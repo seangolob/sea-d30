@@ -1,0 +1,26 @@
+{
+  "name": "inclass_feb3",
+  "version": "0.1.0",
+  "description": "In class work from feb 3",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codefellows/sea-d30.git"
+  },
+  "author": "Tyler Morgan <tyler@codefellows.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/codefellows/sea-d30/issues"
+  },
+  "homepage": "https://github.com/codefellows/sea-d30",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.1.0"
+  }
+}
