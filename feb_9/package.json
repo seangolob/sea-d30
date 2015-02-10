@@ -1,0 +1,15 @@
+{
+  "name": "feb_9",
+  "version": "1.0.0",
+  "description": "",
+  "main": "simple_http_server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "chai-http": "^1.0.0"
+  }
+}
