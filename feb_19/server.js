@@ -14,7 +14,7 @@ require('./lib/passport_strat')(passport);
 var notesRouter = express.Router();
 var userRouter = express.Router();
 
-notesRoutes(notesRouter);
+notesRoutes(notesRouter, app.get('appSecret'));
 require('./routes/user_routes')(userRouter, passport, app.get('appSecret'));
 
 app.use('/api/v1', notesRouter);
