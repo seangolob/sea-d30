@@ -1,6 +1,9 @@
 'use strict';
 
-var greet = require('./greet');
-var $ = require('jquery');
+require('angular/angular');
 
-$('main').append('<p>' + greet() + '</p>');
+var notesApp = angular.module('notesApp', []);
+
+notesApp.controller('notesMainController', ['$scope', function($scope) {
+  $scope.greeting = 'hello world';
+}]);

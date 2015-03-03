@@ -5,8 +5,10 @@
 	<title>Hello From Html</title>
 </head>
 <body data-ng-app="notesApp">
-  <h1>Hello World</h1>
-  <main></main>
+  <main data-ng-controller="notesMainController">
+    <h1>{{greeting}}</h1>
+    <input type="text" data-ng-model="greeting">
+  </main>
 
   <script src="bundle.js"></script>
 </body>
