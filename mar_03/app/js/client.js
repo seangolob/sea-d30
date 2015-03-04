@@ -4,6 +4,4 @@ require('angular/angular');
 
 var notesApp = angular.module('notesApp', []);
 
-notesApp.controller('notesMainController', ['$scope', function($scope) {
-  $scope.greeting = 'hello world';
-}]);
+require('./notes/controllers/notes_controller')(notesApp);
