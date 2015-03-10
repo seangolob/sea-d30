@@ -31,4 +31,12 @@ module.exports = function(app) {
       res.json(req.body);
     });
   });
+
+  app.delete('/notes/:id', function(req, res) {
+    Note.remove({_id: req.params.id}, function(err) {
+      if (err) return res.status(500).send({'msg': 'could not delete'});
+
+      res.json({'msg': 'success!'});
+    });
+  });
 };
