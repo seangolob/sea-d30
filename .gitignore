@@ -6,3 +6,4 @@
 **/build/
 **/bower_components
 **/test_bundle.js
+**/*bundle*
