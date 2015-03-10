@@ -1,10 +1,13 @@
 'use strict';
 
 module.exports = function(app) {
-  var handleError = function(data) {
-    console.log(data);
+  var handleSuccess = function(data) {
+    this.callback(null, data);
   };
 
+  var handleError = function(data) {
+    this.callback(data);
+  }
   app.factory('resource', ['$http', function($http) {
     return function(resourceName) {
       return {
@@ -13,8 +16,10 @@ module.exports = function(app) {
             method: 'GET',
             url: '/api/v1/' + resourceName
           })
-          .success(callback)
-          .error(handleError);
+          .success(handleSuccess).bind({callback: callback})
+          .error(function(data) {
+            callback(data);
+          });
         },
 
         create: function(resource, callback) {
