@@ -13,7 +13,7 @@ module.exports = function(app, passport, appSecret) {
 
       user.generateToken(appSecret, function(err, token) {
         if (err) return res.status(500).send({msg: 'could not generate token'});
-        res.json({token: token});
+        res.json({eat: token});
       })
     });
   });
@@ -21,7 +21,7 @@ module.exports = function(app, passport, appSecret) {
   app.get('/sign_in', passport.authenticate('basic', {session: false}), function(req, res) {
     req.user.generateToken(appSecret, function(err, token) {
       if (err) return res.status(500).send({msg: 'could not generate token'});
-      res.json({token: token});
+      res.json({eat: token});
     })
   });
 };
