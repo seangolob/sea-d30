@@ -2,3 +2,8 @@
 **/*.sw?
 **/npm-debug.log
 **/db/
+**/bower_compoents
+**/build/
+**/bower_components
+**/test_bundle.js
+**/*bundle*
