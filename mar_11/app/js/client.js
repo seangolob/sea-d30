@@ -12,9 +12,10 @@ var Note = React.createClass({
 
 var NoteList = React.createClass({
   render: function() {
-    var notes = this.props.data.map(function(note) {
-      return <Note data={note} key={note._id}/>
-    });
+    var notes = [];
+    for(var i = 0; i < this.props.data.length; i++){
+      notes.push(<Note data={this.props.data[i]} key={this.props.data[i]._id}/>);
+    }
     return (
       <section>
         <h1>Notes:</h1>
