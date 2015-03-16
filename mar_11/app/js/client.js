@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react');
+var ajax = require('jquery').ajax;
 
 var notesData = [{noteBody: 'hello world', _id: 1}, {noteBody: 'goodbye world', _id: 2}];
 
@@ -13,8 +14,21 @@ var NoteForm = React.createClass({
   },
   handleSubmit: function(event) {
     event.preventDefault();
-    this.props.onNewNoteSubmit(this.state.newNote);
-    this.setState({newNote: {noteBody: ''}});
+    console.log(this.state.newNote);
+    var newNote = this.state.newNote;
+    ajax({
+      url: this.props.url,
+      contentType: 'application/json',
+      type: 'POST',
+      data: JSON.stringify(newNote),
+      success: function(data) {
+        this.props.onNewNoteSubmit(data);
+        this.setState({newNote: {noteBody: ''}});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.log(err);
+      }
+    });
   },
   render: function() {
     return (
@@ -36,7 +50,7 @@ var Note = React.createClass({
 var NoteList = React.createClass({
   render: function() {
     var notes = this.props.data.map(function(note) {
-      return <Note data={note} key={note._id}/>
+      return <Note data={note} key={note._id}/>;
     });
     return (
       <section>
@@ -49,9 +63,9 @@ var NoteList = React.createClass({
   }
 });
 
-var App = React.createClass({
+var NotesApp = React.createClass({
   getInitialState: function() {
-    return {notesData: notesData};
+    return {notesData: []};
   },
   onNewNote: function(note) {
     note._id = this.state.notesData.length + 1;
@@ -59,14 +73,28 @@ var App = React.createClass({
     stateCopy.notesData.push(note);
     this.setState(stateCopy);
   },
+  componentDidMount: function() {
+    ajax({
+      url: this.props.notesBaseUrl,
+      dataType: 'json',
+      success: function(data) {
+        var state = this.state;
+        state.notesData = data;
+        this.setState(state);
+      }.bind(this),
+      error: function(xhr, status) {
+        console.log(xhr, status);
+      }
+    });
+  },
   render: function() {
     return (
       <main>
-        <NoteForm onNewNoteSubmit={this.onNewNote}/>
+        <NoteForm onNewNoteSubmit={this.onNewNote} url={this.props.notesBaseUrl}/>
         <NoteList data={this.state.notesData} />
       </main>
     )
   }
 });
 
-React.render(<App />, document.body);
+React.render(<NotesApp notesBaseUrl={'/api/v1/notes'}/>, document.body);
