@@ -1,0 +1,9 @@
+<section data-ng-controller="signupController">
+  <form name="signupform">
+    <label for="email">email</label>
+    <input id="email" type="text" required data-ng-model="newUser.email">
+    <label for="password">password</label>
+    <input id="password" type="text" required data-ng-model="newUser.password">
+    <button data-ng-disabled="!signupform.$valid" data-ng-click="createNewUser()">Create User</button>
+  </form>
+</section>

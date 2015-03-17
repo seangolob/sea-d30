@@ -2,8 +2,12 @@
 
 require('angular/angular');
 require('angular-route');
+require('angular-cookies');
+require('angular-base64');
 
-var notesApp = angular.module('notesApp', ['ngRoute']);
+var notesApp = angular.module('notesApp', ['ngRoute', 'base64', 'ngCookies']);
+
+require('./users/users')(notesApp);
 
 //services
 require('./services/resource_service')(notesApp);
@@ -24,6 +28,10 @@ notesApp.config(['$routeProvider', function($routeProvider) {
   })
   .when('/about', {
     templateUrl: 'templates/about.html'
+  })
+  .when('/signup', {
+    templateUrl: 'templates/users/signup.html',
+    controller: 'signupController'
   })
   .when('/', {
     redirectTo: '/notes'
