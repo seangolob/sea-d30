@@ -33,6 +33,10 @@ notesApp.config(['$routeProvider', function($routeProvider) {
     templateUrl: 'templates/users/signup.html',
     controller: 'signupController'
   })
+  .when('/signin', {
+    templateUrl: 'templates/users/signin.html',
+    controller: 'signinController'
+  })
   .when('/', {
     redirectTo: '/notes'
   })

@@ -1,7 +1,10 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('notesController', ['$scope', 'resource', function($scope, resource) {
+  app.controller('notesController', ['$scope', 'resource', '$cookies', '$location', function($scope, resource, $cookies, $location) {
+
+    if (!$cookies.eat || $cookies.eat.length < 1)
+      $location.path('/signup'); 
 
     $scope.notes = [];
 
